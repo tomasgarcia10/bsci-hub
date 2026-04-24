@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BSci Resource Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #141416;
+      --surface: #1E1E22;
+      --surface-hover: #26262B;
+      --surface-alt: #1A1A2E;
+      --text: #F0F0F0;
+      --text-mid: #A0A0A8;
+      --text-light: #6B6B75;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(255,255,255,0.12);
+      --radius: 14px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    .page { max-width: 900px; margin: 0 auto; padding: 56px 24px 80px; }
+    .header { margin-bottom: 48px; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.8px; color: var(--text-light); margin-bottom: 14px; }
+    .header h1 { font-size: 34px; font-weight: 800; letter-spacing: -1px; line-height: 1.15; margin-bottom: 10px; }
+    .header p { font-size: 15px; color: var(--text-mid); line-height: 1.6; max-width: 540px; }
+    .section { margin-bottom: 32px; }
+    .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-left: 2px; }
+    .section-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .section-text { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-mid); }
+    .dot-star { background: #F472B6; } .dot-violet { background: #8B5CF6; } .dot-emerald { background: #34D399; }
+    .dot-amber { background: #FBBF24; } .dot-cyan { background: #22D3EE; } .dot-indigo { background: #818CF8; }
+    .bento { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .bento-single { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .card { background: var(--surface); border-radius: var(--radius); padding: 22px 22px 20px; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.23, 1, 0.32, 1); border: 1px solid var(--border); }
+    .card:hover { background: var(--surface-hover); border-color: var(--border-hover); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    .card-nolink { cursor: default; }
+    .card-nolink:hover { transform: none; background: var(--surface); box-shadow: none; border-color: var(--border); }
+    .card-strategic { background: var(--surface-alt); }
+    .card-strategic:hover { background: #22223a; }
+    .card-emoji { font-size: 32px; margin-bottom: 14px; line-height: 1; }
+    .card-title { font-size: 15px; font-weight: 700; letter-spacing: -0.1px; margin-bottom: 5px; }
+    .card-desc { font-size: 13px; line-height: 1.55; color: var(--text-mid); flex: 1; }
+    .card-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+    .chip { display: inline-flex; align-items: center; padding: 4px 11px; border-radius: 100px; font-size: 11px; font-weight: 600; letter-spacing: 0.2px; }
+    .chip-explore { background: rgba(139,92,246,0.15); color: #A78BFA; }
+    .chip-reference { background: rgba(59,130,246,0.15); color: #60A5FA; }
+    .chip-read { background: rgba(251,191,36,0.15); color: #FCD34D; }
+    .chip-watch { background: rgba(236,72,153,0.15); color: #F472B6; }
+    .chip-try { background: rgba(52,211,153,0.15); color: #6EE7B7; }
+    .chip-ask { background: rgba(248,113,113,0.15); color: #FCA5A5; }
+    .chip-wip { background: rgba(148,163,184,0.12); color: #94A3B8; }
+    .chip-start { background: rgba(244,114,182,0.2); color: #F9A8D4; }
+    .card-arrow { position: absolute; top: 16px; right: 16px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translate(-3px, 3px); transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1); }
+    .card:hover .card-arrow { opacity: 0.5; transform: translate(0, 0); }
+    .card-arrow svg { width: 14px; height: 14px; stroke: var(--text-mid); }
+    .footer { text-align: center; margin-top: 48px; font-size: 11px; color: var(--text-light); letter-spacing: 0.5px; }
+    @media (max-width: 640px) { .bento { grid-template-columns: 1fr; } .page { padding: 32px 16px 60px; } .header h1 { font-size: 26px; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-eyebrow">VUX &middot; Behavioral Science</div>
+    <h1>BSci Resource Hub</h1>
+    <p>Core frameworks, research, and prototypes.</p>
+  </div>
+
+  <!-- ===== BSci 2025 Recap (Start Here) ===== -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-dot dot-star"></div>
+      <span class="section-text">Start Here</span>
+    </div>
+    <div class="bento-single">
+      <a class="card" href="https://www.figma.com/make/1h7CrDiKAnuTutXgPdmh0j/BSci---2025-Recap-?p=f&t=vSHew6DvtaNjZyGy-0&fullscreen=1" target="_blank" rel="noopener">
+        <div class="card-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></div>
+        <div class="card-emoji">&#127942;</div>
+        <div class="card-title">BSci 2025 Recap</div>
+        <div class="card-desc">A journey through insights, challenges, and the future we&rsquo;re building together. Start here for a high-level view of everything BSci has done.</div>
+        <div class="card-chips">
+          <span class="chip chip-start">Start here</span>
+          <span class="chip chip-explore">Explore</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== BeST Framework Toolkit ===== -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-dot dot-violet"></div>
+      <span class="section-text">BeST Framework Toolkit</span>
+    </div>
+    <div class="bento">
+      <a class="card" href="https://docs.google.com/presentation/d/1XQK6aTtTY6vcdIbrZosaIW7ghDD-Xz9jA9Xfs1PVstU/edit?resourcekey=0-VDKrSwPVvAhSCFP9FuELzQ&slide=id.g2ef80d37a57_0_199#slide=id.g2ef80d37a57_0_199" target="_blank" rel="noopener">
+        <div class="card-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></div>
+        <div class="card-emoji">&#129513;</div>
+        <div class="card-title">BeST Deck</div>
+        <div class="card-desc">Our tactical framework for operationalizing behavioral insight at the point of design. Start here.</div>
+        <div class="card-chips"><span class="chip chip-explore">Explore</span></div>
+      </a>
+
+      <a class="card" href="https://docs.google.com/spreadsheets/d/1qfYxaHEXvxyV2c43hOLw7sFnqwP2y9JJz3Yjf71YifE/edit?resourcekey=0-x9PiMcb4FXOIB4oZDu7JmQ&gid=1320695823#gid=1320695823" target="_blank" rel="noopener">
+        <div class="card-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></div>
+        <div class="card-emoji">&#128218;</div>
+        <div class="card-title">BeST Bank</div>
+        <div class="card-desc">Searchable library of behavioral techniques mapped to COM-B barriers and BCTs.</div>
+        <div class="card-chips"><span class="chip chip-reference">Reference</span></div>
+      </a>
+
+      <div class="card card-nolink">
+        <div class="card-emoji">&#127916;</div>
+        <div class="card-title">Barriers Agent Demo</div>
+        <div class="card-desc">Full screencast of the AI-powered barriers diagnosis agent in action.</div>
+        <div class="card-chips">
+          <span class="chip chip-watch">Watch</span>
+          <span class="chip chip-ask">Ask Tomas</span>
+        </div>
+      </div>
+
+      <a class="card" href="https://preprints.jmir.org/preprint/75421" target="_blank" rel="noopener">
+        <div class="card-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></div>
+        <div class="card-emoji">&#128196;</div>
+        <div class="card-title">JMIR Paper</div>
+        <div class="card-desc">Published research on behavioral engagement in digital health &mdash; the evidence base behind our approach.</div>
+        <div class="card-chips"><span class="chip chip-read">Read</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== Motivational Approach ===== -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-dot dot-emerald"></div>
+      <span class="section-text">Motivational Approach</span>
+    </div>
+    <div class="bento">
+      <a class="card" href="https://www.figma.com/slides/VJUmLSy6FFFLHKT0bqOS6h/-Full-version--Behavioral-Engagement-Vision?node-id=1004-8443&t=P5IC4UiF4FWh0FK4-0#-1" target="_blank" rel="noopener">
+        <div class="card-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></div>
+        <div class="card-emoji">&#129504;</div>
+        <div class="card-title">Behavioral Engagement Vision</div>
+        <div class="card-desc">How we ground retention in intrinsic motivation, habit loops, and self-determination theory.</div>
+        <div class="card-chips"><span class="chip chip-explore">Explore</span></div>
+      </a>
+
+      <a class="card" href="https://www.figma.com/board/YmNpgUEjB6efCVELwLiBtk/%F0%9F%A7%A0-BSci-UX--Figjam-?node-id=2288-105270&t=BzCwdC3UYPIWKxv0-0" target="_blank" rel="noopener">
+        <div class="card-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></div>
+        <div class="card-emoji">&#127918;</div>
+        <div class="card-title">Gamification Experiences</div>
+        <div class="card-desc">BSci-UX explorations for gamification patterns and engagement mechanics.</div>
+        <div class="card-chips"><span class="chip chip-explore">Explore</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== Rewards & Incentives ===== -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-dot dot-amber"></div>
+      <span class="section-text">Rewards &amp; Incentives</span>
+    </div>
+    <div class="bento-single">
+      <a class="card" href="https://docs.google.com/document/d/1zfG7APG8Vm5hu2Hu1x2NmginGLdLIugExpGGlhlldoc/edit?tab=t.0#heading=h.lz5ze7nitgk8" target="_blank" rel="noopener">
+        <div class="card-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></div>
+        <div class="card-emoji">&#128176;</div>
+        <div class="card-title">Verily&rsquo;s Digital Economy</div>
+        <div class="card-desc">Initial proposition for rewards and incentive structures &mdash; driving sustained engagement without undermining intrinsic motivation.</div>
+        <div class="card-chips"><span class="chip chip-read">Read</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== BeE Prototype ===== -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-dot dot-cyan"></div>
+      <span class="section-text">BeE Prototype</span>
+    </div>
+    <div class="bento-single">
+      <a class="card" href="https://didactic-adventure-8w2jk1e.pages.github.io/behavioral-engagement-ecosystem/" target="_blank" rel="noopener">
+        <div class="card-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></div>
+        <div class="card-emoji">&#129514;</div>
+        <div class="card-title">Behavioral Engagement Ecosystem</div>
+        <div class="card-desc">Interactive prototype &mdash; choose a product funnel to diagnose behavioral barriers, design interventions, and run experiments.</div>
+        <div class="card-chips"><span class="chip chip-try">Try it</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== Strategic Direction ===== -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-dot dot-indigo"></div>
+      <span class="section-text">Strategic Direction</span>
+    </div>
+    <div class="bento-single">
+      <a class="card card-strategic" href="https://www.figma.com/board/S5qOnRM8X0JoFoFAJK1ALU/BSci-Vision-Plan--2024-27-?node-id=0-1&p=f&t=QwtNYKfgPboS8AbS-0" target="_blank" rel="noopener">
+        <div class="card-arrow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg></div>
+        <div class="card-emoji">&#128506;</div>
+        <div class="card-title">BSci Operating Model</div>
+        <div class="card-desc">Roadmap from consultancy to behavioral-enabled org &mdash; team structure, verticals, and the maturity model we&rsquo;re building toward.</div>
+        <div class="card-chips">
+          <span class="chip chip-explore">Explore</span>
+          <span class="chip chip-wip">In progress</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">Updated April 2026</div>
+</div>
+</body>
+</html>
